@@ -1,0 +1,25 @@
+Entry:
+main:
+182c	a6 00          	LDA   #$00
+182e	b7 03           STA   $03
+1830	a6 ff           LDA   #$FF
+1832	b7 01           STA   $01
+1834	a6 00           LDA   #$00
+1836	b7 80           STA   $80
+1838    b7 81  	        STA   $81
+
+	
+loop:
+183a    b6 00	    	LDA   $00
+183c    a4 80   	    AND   #$80
+183e	27 08           BEQ   no_switch_7	; if this is true pc should be 1848
+1840	b6 80           LDA   $80
+1842	ab 01           ADD   #$01
+1844	b7 80           STA   $80
+1846	20 f2           BRA   loop			; if we get here, pc should be 183a
+	
+no_switch_7:
+1848	a6 01           LDA   #$01
+184a	bb 81           ADD   $81
+184c	b7 81           STA   $81
+184e	20 ea           BRA   loop			; if we get here, pc should be 183a
